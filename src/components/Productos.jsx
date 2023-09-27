@@ -36,6 +36,11 @@ const Productos = () => {
           fetchData();
       }, []);
 
+      const openProductDetails = (productId) => {
+        const productDetailsUrl = '/detalle-producto/${productId}';
+        window.open(productDetailsUrl, '_blank');
+      }
+
     return(
         
         <div className='proyecto-main'>
@@ -45,15 +50,16 @@ const Productos = () => {
             <p>{error}</p> ) : (
           <div className='grid-container'>
             {productos.map((productos) => (
-              <div className="item" key={productos.id}>
+              <div className="item" key={productos.id} onClick={() => openProductDetails(productos.id)}>
                 <div>
                   <img className='imagen-proyectos' src={"data:image/jpeg;base64," + productos.img} alt={productos.namecurse} />
                 </div>
-                <h2 className='item-nombre'>{productos.name}</h2>
-                <p>Stock: {productos.stock}</p>
-                <p>Precio: {productos.price}</p>
-                <p>Descripcion:</p>
-                <p>{productos.description.length > 150 ? productos.description.slice(0, 150) + '...' : productos.description}</p>
+                <div className='sector-description'>
+                  <h2 className='item-nombre'>{productos.name}</h2><br />
+                  <p>Stock: {productos.stock}</p>
+                  <p>Precio: {productos.price}</p><br />
+                  <p>{productos.description.length > 150 ? productos.description.slice(0, 150) + '...' : productos.description}</p>
+                </div>
               </div>
             ))}
           </div>
