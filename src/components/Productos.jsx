@@ -36,11 +36,6 @@ const Productos = () => {
           fetchData();
       }, []);
 
-      const openProductDetails = (productId) => {
-        const productDetailsUrl = '/detalle-producto/${productId}';
-        window.open(productDetailsUrl, '_blank');
-      }
-
     return(
         
         <div className='proyecto-main'>
@@ -50,7 +45,7 @@ const Productos = () => {
             <p>{error}</p> ) : (
           <div className='grid-container'>
             {productos.map((productos) => (
-              <div className="item" key={productos.id} onClick={() => openProductDetails(productos.id)}>
+              <div className="item" key={productos.id}>
                 <div>
                   <img className='imagen-proyectos' src={"data:image/jpeg;base64," + productos.img} alt={productos.namecurse} />
                 </div>
